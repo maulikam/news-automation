@@ -23,8 +23,11 @@ def fetch_article_content(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find all div elements with the class that contains the main content
+    # Check for content in divs with class '_s30J clearfix'
     content_divs = soup.find_all('div', class_='_s30J clearfix')
+    if not content_divs:
+        # If no content found in the first div class, check for divs with class 'Normal'
+        content_divs = soup.find_all('div', class_='Normal')
 
     article_content = ' '.join([div.get_text().strip() for div in content_divs])
 
