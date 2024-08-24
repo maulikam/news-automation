@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import time
+import random
 
 def fetch_toi_headlines():
     url = "https://timesofindia.indiatimes.com/business"
@@ -42,3 +44,6 @@ if __name__ == "__main__":
         content = fetch_article_content(article['url'])
         print(f"Content: {content[:500]}...")  # Print the first 500 characters of the content
         print("-" * 80)
+
+        # Random sleep interval between 1 to 3 seconds
+        time.sleep(random.uniform(1, 3))
